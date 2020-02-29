@@ -25,7 +25,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         setupViews()
         setupConstraints()
-        
+        let helper = GitHubApiHelper()
+        helper.fetchTopRepositoriesInLastMonth()
     }
     
     // MARK: - Views and Constraints

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,8 @@
 		1AA142E62409EDAB00C7A782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA142E52409EDAB00C7A782 /* ViewController.swift */; };
 		1AA142EB2409EDAD00C7A782 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1AA142EA2409EDAD00C7A782 /* Assets.xcassets */; };
 		1AA142EE2409EDAD00C7A782 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1AA142EC2409EDAD00C7A782 /* LaunchScreen.storyboard */; };
+		1AA142F62409F4EE00C7A782 /* CommitTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA142F52409F4EE00C7A782 /* CommitTableViewCell.swift */; };
+		1AA142F82409F60B00C7A782 /* RepositoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AA142F72409F60B00C7A782 /* RepositoryTableViewCell.swift */; };
 		C77BD03C11E64DA303D0CEC9 /* Pods_CommitReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E348F6B1CDF053609B4B3160 /* Pods_CommitReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +25,8 @@
 		1AA142EA2409EDAD00C7A782 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1AA142ED2409EDAD00C7A782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1AA142EF2409EDAD00C7A782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1AA142F52409F4EE00C7A782 /* CommitTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitTableViewCell.swift; sourceTree = "<group>"; };
+		1AA142F72409F60B00C7A782 /* RepositoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTableViewCell.swift; sourceTree = "<group>"; };
 		1C5CD66A5F0DB967CA0960A3 /* Pods-CommitReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommitReader.release.xcconfig"; path = "Target Support Files/Pods-CommitReader/Pods-CommitReader.release.xcconfig"; sourceTree = "<group>"; };
 		3B1908D526AD1A199B946A01 /* Pods-CommitReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CommitReader.debug.xcconfig"; path = "Target Support Files/Pods-CommitReader/Pods-CommitReader.debug.xcconfig"; sourceTree = "<group>"; };
 		E348F6B1CDF053609B4B3160 /* Pods_CommitReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CommitReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +68,8 @@
 				1AA142E12409EDAB00C7A782 /* AppDelegate.swift */,
 				1AA142E32409EDAB00C7A782 /* SceneDelegate.swift */,
 				1AA142E52409EDAB00C7A782 /* ViewController.swift */,
+				1AA142F52409F4EE00C7A782 /* CommitTableViewCell.swift */,
+				1AA142F72409F60B00C7A782 /* RepositoryTableViewCell.swift */,
 				1AA142EA2409EDAD00C7A782 /* Assets.xcassets */,
 				1AA142EC2409EDAD00C7A782 /* LaunchScreen.storyboard */,
 				1AA142EF2409EDAD00C7A782 /* Info.plist */,
@@ -77,7 +83,6 @@
 				3B1908D526AD1A199B946A01 /* Pods-CommitReader.debug.xcconfig */,
 				1C5CD66A5F0DB967CA0960A3 /* Pods-CommitReader.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -203,8 +208,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AA142F62409F4EE00C7A782 /* CommitTableViewCell.swift in Sources */,
 				1AA142E62409EDAB00C7A782 /* ViewController.swift in Sources */,
 				1AA142E22409EDAB00C7A782 /* AppDelegate.swift in Sources */,
+				1AA142F82409F60B00C7A782 /* RepositoryTableViewCell.swift in Sources */,
 				1AA142E42409EDAB00C7A782 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

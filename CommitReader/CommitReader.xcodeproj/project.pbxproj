@@ -74,7 +74,7 @@
 				1AA142FC240AF8F700C7A782 /* ViewControllers */,
 				1AA142FB240AF8E600C7A782 /* Views */,
 				1AA142FD240AF92600C7A782 /* Model */,
-				1AA142F9240A103400C7A782 /* GitHubApiHelper.swift */,
+				1AFD981C240C5210005A1B29 /* Helpers+Extensions */,
 				1AA142EA2409EDAD00C7A782 /* Assets.xcassets */,
 				1AA142EC2409EDAD00C7A782 /* LaunchScreen.storyboard */,
 				1AA142EF2409EDAD00C7A782 /* Info.plist */,
@@ -105,6 +105,14 @@
 				1AFD981A240B1C34005A1B29 /* Repository.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		1AFD981C240C5210005A1B29 /* Helpers+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1AA142F9240A103400C7A782 /* GitHubApiHelper.swift */,
+			);
+			path = "Helpers+Extensions";
 			sourceTree = "<group>";
 		};
 		5F1E4B99B1BB9FB695EBB26A /* Pods */ = {

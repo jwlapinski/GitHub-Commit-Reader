@@ -31,7 +31,7 @@ class RepositoryTableViewCell: UITableViewCell {
     func setupViews() {
                 
         // Repository Name Label
-        repositoryNameLabel.font = UIFont.boldSystemFont(ofSize: 25)
+        repositoryNameLabel.font = UIFont.boldSystemFont(ofSize: 22)
         
         // Star View
         starImageView.image = UIImage(named: "starIcon")

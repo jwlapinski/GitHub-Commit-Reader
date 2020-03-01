@@ -10,16 +10,19 @@ import UIKit
 
 class GitHubApiHelper: NSObject {
     
-    func fetchTopRepositoriesInLastMonth() {
-        let lastWeekDateString = self.getLastWeekDate()
-        let url = URL(string: "https://api.github.com/search/repositories?q=created:\(lastWeekDateString)")
+    func fetchTopRepositoriesInLastMonth(completion:@escaping (_ repositoryResponse:RepositoryResponse?, Error?) -> Void) {
+        let lastMonthDateString = self.getLastMonthDate()
+        let url = URL(string: "https://api.github.com/search/repositories?q=created:\(lastMonthDateString)")
         var urlRequest = URLRequest(url: url!)
         urlRequest.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data, error == nil else { return }
             do {
-                let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any]
-//                print(jsonData)
+                let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                print(jsonData)
+                let repositoryResponse = try JSONDecoder().decode(RepositoryResponse.self, from: data)
+                completion(repositoryResponse, nil)
+
             } catch {
                 print(error)
             }
@@ -36,7 +39,6 @@ class GitHubApiHelper: NSObject {
             guard let data = data, error == nil else { return }
             do {
                 let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(jsonData)
             } catch {
                 print(error)
             }
@@ -48,14 +50,14 @@ class GitHubApiHelper: NSObject {
 
 extension GitHubApiHelper {
     
-    func getLastWeekDate() -> String {
-        let lastWeekDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+    func getLastMonthDate() -> String {
+        let lastMonthDate = Calendar.current.date(byAdding: .month, value: -1, to: Date())
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyy-MM-dd"
-        let lastWeekDateString = dateFormatter.string(from: lastWeekDate!)
+        let lastMonthDateString = dateFormatter.string(from: lastMonthDate!)
         
-        return lastWeekDateString
+        return lastMonthDateString
     }
     
 }

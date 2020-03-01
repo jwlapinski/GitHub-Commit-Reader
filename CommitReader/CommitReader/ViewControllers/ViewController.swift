@@ -12,26 +12,48 @@ import SnapKit
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let topRepositoryTableView = UITableView()
+    let apiHelper = GitHubApiHelper()
+    var repositoriesArray = [RepositoryResponse.Repository]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getTopRepositories()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = "Top 5 Repositories"
+        self.navigationItem.title = "Top Repositories"
         self.navigationController?.navigationBar.isTranslucent = false
-        
-        topRepositoryTableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: "MyCell")
-        topRepositoryTableView.dataSource = self
-        topRepositoryTableView.delegate = self
-        
-        setupViews()
-        setupConstraints()
-        let helper = GitHubApiHelper()
-        helper.fetchTopRepositoriesInLastMonth()
+        self.view.backgroundColor = .white
+    }
+    
+    func getTopRepositories() {
+        apiHelper.fetchTopRepositoriesInLastMonth { (repositoryResponse, error) in
+            if error != nil {
+                // to do
+                print(error)
+            }
+            
+            if let repositoryResponse = repositoryResponse {
+                for repository in repositoryResponse.repositories {
+                    self.repositoriesArray.append(repository)
+                }
+                
+                DispatchQueue.main.async {
+                    self.setupViews()
+                    self.setupConstraints()
+                    self.topRepositoryTableView.reloadData()
+                }
+            }
+        }
     }
     
     // MARK: - Views and Constraints
     
     func setupViews() {
+        topRepositoryTableView.register(RepositoryTableViewCell.self, forCellReuseIdentifier: "MyCell")
+        topRepositoryTableView.dataSource = self
+        topRepositoryTableView.delegate = self
         self.view.addSubview(topRepositoryTableView)
     }
     
@@ -44,7 +66,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: - UITableViewDelegate Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return repositoriesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,6 +75,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         cell.preservesSuperviewLayoutMargins = false
         cell.separatorInset = UIEdgeInsets.zero
         cell.layoutMargins = UIEdgeInsets.zero
+        
+        let repository = repositoriesArray[indexPath.row]
+        
+        cell.repositoryNameLabel.text = repository.name
+        cell.starCountLabel.text = String(repository.stargazersCount)
+        cell.watcherCountLabel.text = String(repository.watchers)
         
         return cell
     }

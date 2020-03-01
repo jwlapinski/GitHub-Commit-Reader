@@ -8,6 +8,28 @@
 
 import Foundation
 
-class Repository: Codable {
-//    struct 
+class RepositoryResponse: Decodable {
+    
+    struct Repository: Codable {
+        var url: String
+        var name: String
+        var stargazersCount: Double
+        var watchers: Double
+        
+        enum CodingKeys: String, CodingKey {
+            case url
+            case name
+            case stargazersCount = "stargazers_count"
+            case watchers
+        }
+        
+    }
+    
+    var repositories:[Repository]
+    
+    enum CodingKeys: String, CodingKey {
+        case repositories = "items"
+    }
+    
+    
 }

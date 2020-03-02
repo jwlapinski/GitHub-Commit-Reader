@@ -13,11 +13,11 @@ class RepositoryTableViewCell: UITableViewCell {
     
     let repositoryNameLabel = UILabel()
     let starCountLabel = UILabel()
-    let watcherCountLabel = UILabel()
+    let forkCountLabel = UILabel()
     private let arrowImageView = UIImageView()
     private let starImageView = UIImageView()
-    private let watcherImageView = UIImageView()
-    private let watcherStackView = UIStackView()
+    private let forkImageView = UIImageView()
+    private let forksStackView = UIStackView()
     private let starCountStackView = UIStackView()
     private let verticalStackView = UIStackView()
     private let bottomHorizontalStackView = UIStackView()
@@ -44,16 +44,16 @@ class RepositoryTableViewCell: UITableViewCell {
         starCountStackView.addArrangedSubview(starImageView)
         starCountStackView.addArrangedSubview(starCountLabel)
         
-        // Watcher View
-        watcherImageView.image = UIImage(named: "eyeIcon")
-        watcherCountLabel.font = UIFont.systemFont(ofSize: 14)
+        // Frok View
+        forkImageView.image = UIImage(named: "forkIcon")
+        forkCountLabel.font = UIFont.systemFont(ofSize: 14)
         
-        watcherStackView.alignment = .center
-        watcherStackView.axis = .horizontal
-        watcherStackView.distribution = .equalSpacing
-        watcherStackView.spacing = 2
-        watcherStackView.addArrangedSubview(watcherImageView)
-        watcherStackView.addArrangedSubview(watcherCountLabel)
+        forksStackView.alignment = .center
+        forksStackView.axis = .horizontal
+        forksStackView.distribution = .equalSpacing
+        forksStackView.spacing = 2
+        forksStackView.addArrangedSubview(forkImageView)
+        forksStackView.addArrangedSubview(forkCountLabel)
         
         arrowImageView.image = UIImage(named: "chevronIcon")
         self.contentView.addSubview(arrowImageView)
@@ -64,7 +64,7 @@ class RepositoryTableViewCell: UITableViewCell {
         bottomHorizontalStackView.distribution = .equalSpacing
         bottomHorizontalStackView.spacing = 20
         bottomHorizontalStackView.addArrangedSubview(starCountStackView)
-        bottomHorizontalStackView.addArrangedSubview(watcherStackView)
+        bottomHorizontalStackView.addArrangedSubview(forksStackView)
         
         // Vertical StackView
         verticalStackView.alignment = .leading

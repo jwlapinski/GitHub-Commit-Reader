@@ -17,12 +17,10 @@ class GitHubApiHelper: NSObject {
         urlRequest.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data, error == nil else { return }
+            
             do {
-                let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                print(jsonData)
                 let repositoryResponse = try JSONDecoder().decode(RepositoryResponse.self, from: data)
                 completion(repositoryResponse, nil)
-
             } catch {
                 print(error)
             }
@@ -30,15 +28,17 @@ class GitHubApiHelper: NSObject {
         task.resume()
     }
     
-    func fetchCommitsForRepository(withUrl url:String) {
+    func fetchCommitsForRepository(withUrl url:String, completion:@escaping (_ commits:[CommitResponse.Commit]?, Error?) -> Void) {
         
         let commitsUrl = URL(string: url + "/commits")
         var urlRequest = URLRequest(url: commitsUrl!)
         urlRequest.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
         let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
             guard let data = data, error == nil else { return }
+            
             do {
-                let jsonData = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                let commitResponse = try JSONDecoder().decode([CommitResponse.Commit].self, from: data)
+                completion(commitResponse, nil)
             } catch {
                 print(error)
             }

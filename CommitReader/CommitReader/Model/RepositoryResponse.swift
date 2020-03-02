@@ -1,5 +1,5 @@
 //
-//  Repository.swift
+//  RepositoryResponse.swift
 //  CommitReader
 //
 //  Created by James Lapinski on 2/29/20.
@@ -11,21 +11,20 @@ import Foundation
 class RepositoryResponse: Decodable {
     
     struct Repository: Codable {
-        var url: String
-        var name: String
-        var stargazersCount: Double
-        var watchers: Double
+        let url: String
+        let name: String
+        let stargazersCount: Double
+        let forksCount: Double
         
         enum CodingKeys: String, CodingKey {
             case url
             case name
             case stargazersCount = "stargazers_count"
-            case watchers
+            case forksCount = "forks"
         }
-        
     }
     
-    var repositories:[Repository]
+    let repositories:[Repository]
     
     enum CodingKeys: String, CodingKey {
         case repositories = "items"

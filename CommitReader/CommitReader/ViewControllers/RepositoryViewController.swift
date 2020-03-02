@@ -9,7 +9,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class RepositoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     let topRepositoryTableView = UITableView()
     let apiHelper = GitHubApiHelper()
@@ -27,6 +27,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.view.backgroundColor = .white
     }
     
+    // MARK: - API Call
     func getTopRepositories() {
         apiHelper.fetchTopRepositoriesInLastMonth { (repositoryResponse, error) in
             if error != nil {
@@ -63,6 +64,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
+    // MARK: - Present Commits VC
+    
+    func presentCommitsViewController(withRepositoryURL url:String) {
+        let commitsViewController = CommitsViewController(withUrl: url)
+        self.navigationController?.pushViewController(commitsViewController, animated: true)
+    }
+    
     // MARK: - UITableViewDelegate Methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,10 +87,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         let repository = repositoriesArray[indexPath.row]
         
         cell.repositoryNameLabel.text = repository.name
-        cell.starCountLabel.text = String(repository.stargazersCount)
-        cell.watcherCountLabel.text = String(repository.watchers)
+        cell.starCountLabel.text = repository.stargazersCount.stringWithoutZeroFraction
+        cell.forkCountLabel.text = repository.forksCount.stringWithoutZeroFraction
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repository = repositoriesArray[indexPath.row]
+        self.presentCommitsViewController(withRepositoryURL: repository.url)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
